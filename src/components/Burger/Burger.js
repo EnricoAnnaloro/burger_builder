@@ -42,10 +42,16 @@ const burger = (props) => {
         transformedIngredients = <p>Please select some ingredients!</p>;
     }
 
+    let pattyRequired = null;
+    if(props.ingredients['meat'] <= 0){
+        pattyRequired = <p>Please select at least <strong>1</strong> meat</p>;
+    }
+
     return(
         <div className="Burger">
             <BurgerIngredient type="bread-top" />
             {transformedIngredients}
+            {pattyRequired}
             <BurgerIngredient type="bread-bottom" />       
         </div>
     );
