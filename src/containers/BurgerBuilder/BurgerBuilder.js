@@ -83,6 +83,10 @@ class BurgerBuilder extends Component {
         this.setState({isModalOn: false});
     }
 
+    checkoutHandler = () => {
+        alert("Checkout!");
+    }
+
     render(){
 
         // When a ingredient count goes to 0 we want to disable the 'remove ingredient' button
@@ -100,7 +104,7 @@ class BurgerBuilder extends Component {
         return(
             <Fragment>
                 <Modal show={this.state.isModalOn} modalClosed={this.modalCancelHandler}>
-                    <OrderSummary order={this.state} />
+                    <OrderSummary order={this.state} cancelOrder={this.modalCancelHandler} checkout={this.checkoutHandler} />
                 </Modal>
                 <div>
                     <Burger ingredients={this.state.ingredients}/>

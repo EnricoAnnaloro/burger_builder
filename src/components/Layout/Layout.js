@@ -1,11 +1,13 @@
 import React, {Fragment} from 'react'
+import Toolbar from '../Navigation/Toolbar/Toolbar'
+
 import './Layout.css'
 
 const layout = (props) => {
     return(
         <Fragment>
             <div className="NavBar">
-                <h1 style={{textAlign: "center"}}>Build-A-Burger</h1>
+                <Toolbar />
             </div>
             <main className="MainContent">
                 {props.children}

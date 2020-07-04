@@ -1,8 +1,13 @@
 .BurgerControl{
+    width: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5px 0;
+}
+
+.BurgerControl .buttons{
+    display: flex;
 }
 
 .BurgerControl button {
@@ -46,4 +51,22 @@
 .BurgerControl .More:hover, .BurgerControl .More:active {
     background-color: #99703F;
     color: white;
+}
+
+@media (min-width: 500px) and (min-height: 400px) {
+    .BurgerControl {
+        width: 350px;
+    }
+}
+
+@media (min-width: 500px) and (min-height: 401px) {
+    .BurgerControl {
+        width: 400px;
+    }
+}
+
+@media (min-width: 1000px) and (min-height: 700px) {
+    .BurgerControl {
+        width: 400px;        
+    }
 }

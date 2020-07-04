@@ -1,0 +1,8 @@
+.Modal .hr{
+    border: 1px solid lightgrey;
+}
+
+.Modal .price{
+    float: right;
+    color: grey;
+}
