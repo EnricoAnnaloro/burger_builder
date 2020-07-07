@@ -1,13 +1,14 @@
 import React, {Fragment} from 'react'
 import Logo from '../../Logo/Logo'
 import NavigationItems from '../NavigationItems/NavigationItems'
+import MenuIcon from '../SideDrawer/MenuIcon/MenuIcon'
 import './Toolbar.css'
 
-const toolbar = () => {
+const toolbar = ( props ) => {
     return(
         <Fragment>
             <header className="Toolbar">
-                <div>MENU</div>
+                <MenuIcon clicked={props.openSideDrawer}/>
                 <div style={{height: "70%"}}>
                     <Logo/>
                 </div>

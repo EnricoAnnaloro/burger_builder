@@ -6,8 +6,8 @@ const burgerControl = (props) => {
         <div className="BurgerControl">
             <div className="Label">{props.label}</div>
             <div className="buttons">
-                <button className="Less" onClick={props.removed} disabled={props.disabled}><i class="fa fa-minus"></i></button>
-                <button className="More" onClick={props.added}><i class="fa fa-plus"></i></button>
+                <button className="Less" onClick={props.removed} disabled={props.disabled}><i className="fa fa-minus"></i></button>
+                <button className="More" onClick={props.added}><i className="fa fa-plus"></i></button>
             </div>
         </div>
     )

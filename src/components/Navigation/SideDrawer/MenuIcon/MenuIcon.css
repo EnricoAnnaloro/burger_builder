@@ -1,0 +1,32 @@
+.MenuIcon{
+    cursor: pointer;
+}
+
+.MenuIcon div{
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+.toggle .line1{
+    transform: rotate(-45deg) translate(-5px, 6px);
+    background-color: orange;  
+}
+
+.toggle .line2{
+    opacity: 0;
+    background-color: orange;
+}
+
+.toggle .line3{    
+    transform: rotate(45deg) translate(-5px, -6px);
+    background-color: orange;
+}
+
+@media (min-width: 500px){
+    .MenuIcon{
+        display: none;
+    }
+}

@@ -7,18 +7,24 @@ import './Layout.css'
 class Layout extends Component {
 
     state = {
-        opneSideDrawer: true
+        isSideDrawerOpen: false
     }
 
     closeSideDrawerHandler = () => {
-        this.setState({opneSideDrawer: false});
+        this.setState({isSideDrawerOpen: false});
+    }
+
+    openSideDrawerHandler = () => {
+        this.setState((prevState) => {
+            return {isSideDrawerOpen: !prevState.isSideDrawerOpen};
+        });
     }
 
     render() {
         return(
             <Fragment>
-                <Toolbar />
-                <SideDrawer isOpen={this.state.opneSideDrawer} toClose={this.closeSideDrawerHandler}/>                
+                <Toolbar openSideDrawer={this.openSideDrawerHandler} sideDrawerState={this.state.isSideDrawerOpen}/>
+                <SideDrawer isOpen={this.state.isSideDrawerOpen} toClose={this.closeSideDrawerHandler}/>                
                 <main className="MainContent">
                     {this.props.children}
                 </main>

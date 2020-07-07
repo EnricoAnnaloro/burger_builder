@@ -10,7 +10,7 @@ const orderSummary = (props) => {
     const ingredientsList = Object.keys(ingredients).map(igKey => {
         return(
             <p key={igKey}>
-                <strong style={{textTransform: 'capitalize'}}>{igKey}</strong> <span class="price">{ingredients[igKey]}</span>
+                <strong style={{textTransform: 'capitalize'}}>{igKey}</strong> <span className="price">{ingredients[igKey]}</span>
             </p>
         )
     });
@@ -22,12 +22,12 @@ const orderSummary = (props) => {
 
     return(
         <Fragment>
-            <h2 style={{textAlign: "center"}}>Your order<span style={{color: "black", marginLeft: '2%'}}><i class="fa fa-shopping-cart"></i></span></h2>
-            <p><strong>Ingredient</strong> <span class="price">Quantity</span></p>
+            <h2 style={{textAlign: "center"}}>Your order<span style={{color: "black", marginLeft: '2%'}}><i className="fa fa-shopping-cart"></i></span></h2>
+            <p><strong>Ingredient</strong> <span className="price">Quantity</span></p>
             <hr></hr>
                 {ingredientsList}                
             <hr></hr>
-    <p>Total <span class="price"  style={{color: "black"}}><b>{price.toFixed(2)}$</b></span></p>            
+    <p>Total <span className="price"  style={{color: "black"}}><b>{price.toFixed(2)}$</b></span></p>            
             <div style={divStyles}>
                 <Button btnType='Danger' clicked={props.cancelOrder}>CANCEL</Button>
                 <Button btnType='Success' clicked={props.checkout}>CHECKOUT</Button>

@@ -1,7 +1,8 @@
 .Burger {
-    width: 100%;
+    width: 250px;
     height: 400px;
     margin: auto;
+    margin-bottom: 90px;
     padding-bottom: 20px;
     text-align: center;
     font-weight: bold;
@@ -17,18 +18,15 @@
     .Burger {
         width: 350px;
         height: 400px;
+        margin-bottom: 85px;
     }
 }
 
 @media (min-width: 768px) { 
     .Burger {
         width: 450px;
-        height: 500px;
-    }
-}
-
-@media (min-width: 992px) { 
-    .Burger {
-        width: 700px;        
+        height: 490px;
+        margin-bottom: 0px;
+        padding-bottom: 0;
     }
 }
