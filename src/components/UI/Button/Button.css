@@ -1,6 +1,8 @@
 .Button {
     background-color: transparent;
-    border: none;
+    border: 1px solid black;
+    width: 120px;
+    height: 50px;
     color: white;
     outline: none;
     cursor: pointer;
@@ -14,6 +16,10 @@
 .Button:hover{
     color: white;
     animation: popup 0.3s linear;
+}
+
+.Button:hover .Loader{
+    color:white;
 }
 
 .Success {

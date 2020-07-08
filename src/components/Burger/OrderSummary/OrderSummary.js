@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import Button from '../../UI/Button/Button'
+import Loader from '../../UI/Loader/Loader'
 import './OrderSummary.css'
 
 const orderSummary = (props) => {
@@ -15,10 +16,17 @@ const orderSummary = (props) => {
         )
     });
 
+    let orderButtonContent = "Checkout";
+    if (props.isLoading){
+        orderButtonContent = <Loader />;
+    }
+
     const divStyles = {
         display: 'flex',
         justifyContent: 'space-between'
     }
+
+    console.log(props);
 
     return(
         <Fragment>
@@ -27,10 +35,10 @@ const orderSummary = (props) => {
             <hr></hr>
                 {ingredientsList}                
             <hr></hr>
-    <p>Total <span className="price"  style={{color: "black"}}><b>{price.toFixed(2)}$</b></span></p>            
+            <p>Total <span className="price"  style={{color: "black"}}><b>{price.toFixed(2)}$</b></span></p>            
             <div style={divStyles}>
                 <Button btnType='Danger' clicked={props.cancelOrder}>CANCEL</Button>
-                <Button btnType='Success' clicked={props.checkout}>CHECKOUT</Button>
+                <Button btnType='Success' clicked={props.checkout}>{orderButtonContent}</Button>
             </div>
         </Fragment>
     );
