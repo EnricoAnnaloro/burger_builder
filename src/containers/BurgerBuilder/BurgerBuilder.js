@@ -24,21 +24,29 @@ class BurgerBuilder extends Component {
         isModalOn: false,
         isOrderLoading: false,
         error: false
-    }
+    };
 
     componentDidMount() {
         Axios.get("/ingredients.json")
             .then( response => {
                 let price = 0;
-                for (var ingredient in response.data){
+                let ingredients = {
+                    salad: 0,         
+                    bacon: 0,        
+                    cheese: 0,    
+                    meat: 1 
+                };
+
+                for (let ingredient in response.data){
+                    ingredients[ingredient] = response.data[ingredient]
                     price = price + (INGREDIENTS_PRICES[ingredient] * response.data[ingredient]);
                 }
-                this.setState({ingredients: response.data, totalPrice: price});                    
+                this.setState({ingredients: ingredients, totalPrice: price});                    
             })
             .catch( error => {
                 this.setState({error: error});
             } );
-    }
+    };
 
     updatePurchaseState = (ingredients) => {
         // Called every time an ingredient is added or removed and checks if
@@ -50,7 +58,7 @@ class BurgerBuilder extends Component {
         }
 
         this.setState({purchesable: purchesableUpdate});
-    }
+    };
 
     addIngredientHandler = (type) => {
         // Always remeber that when updating we don't wanna modify directly
@@ -70,7 +78,7 @@ class BurgerBuilder extends Component {
         //Update the state
         this.setState({ingredients: updatedIngredients, totalPrice: updatedPrice});
         this.updatePurchaseState(updatedIngredients);
-    }
+    };
 
     removeIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
@@ -87,43 +95,61 @@ class BurgerBuilder extends Component {
         this.setState({ingredients: updatedIngredients, totalPrice: updatedPrice});
 
         this.updatePurchaseState(updatedIngredients);
-    }
+    };
 
     modalRenderHandler = () => {
         this.setState({isModalOn: true});
-    }
+    };
 
     modalCancelHandler = () => {
         this.setState({isModalOn: false});
-    }
+    };
 
-    checkoutHandler = () => {
-        this.setState({isOrderLoading: true});
+    continueHandler = () => {
+        let queryParams = [];
 
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.price,
-            customer: {
-                name: 'Renke Wang',
-                address: {
-                    Country: "Italy",
-                    city: "Turin",
-                    street: "streettest, 34",
-                    zipCode: "203040"
-                },
-                email: "email@gmail.com"
-            },
-            deliveryMethod: "Fastest"
+        for (let i in this.state.ingredients) {
+            // creating the different combinations 'ingredient=quantity'
+            queryParams.push(encodeURIComponent(i) + "=" + this.state.ingredients[i]);
+            console.log(queryParams);
         }
 
-        Axios.post("orders.json", order)
-            .then( response => {
-                this.setState({isOrderLoading: false, isModalOn: false})
-            })
-            .catch( error => {
-                this.setState({isOrderLoading: false, isModalOn: false})
-            });
-    }
+        // merging all the combination in a string 'ingredient=quantity&ingredient=quantity&...'
+        const queryString = queryParams.join('&');
+
+        this.props.history.push({
+            pathname: "/checkout",
+            search: "?" + queryString
+        });
+    };
+
+    // checkoutHandler = () => {
+    //     this.setState({isOrderLoading: true});
+
+    //     const order = {
+    //         ingredients: this.state.ingredients,
+    //         price: this.state.price,
+    //         customer: {
+    //             name: 'Renke Wang',
+    //             address: {
+    //                 Country: "Italy",
+    //                 city: "Turin",
+    //                 street: "streettest, 34",
+    //                 zipCode: "203040"
+    //             },
+    //             email: "email@gmail.com"
+    //         },
+    //         deliveryMethod: "Fastest"
+    //     }
+
+    //     Axios.post("orders.json", order)
+    //         .then( response => {
+    //             this.setState({isOrderLoading: false, isModalOn: false})
+    //         })
+    //         .catch( error => {
+    //             this.setState({isOrderLoading: false, isModalOn: false})
+    //         });
+    // }
 
     render(){
 
@@ -160,12 +186,11 @@ class BurgerBuilder extends Component {
                     </div>
                 </Fragment>
             );
-            console.log(this.state); 
             orderSummary = (
                 <OrderSummary 
                     order={this.state} 
                     cancelOrder={this.modalCancelHandler} 
-                    checkout={this.checkoutHandler} 
+                    continue={this.continueHandler} 
                     isLoading={this.state.isOrderLoading}
                 />
             );

@@ -26,8 +26,6 @@ const orderSummary = (props) => {
         justifyContent: 'space-between'
     }
 
-    console.log(props);
-
     return(
         <Fragment>
             <h2 style={{textAlign: "center"}}>Your order<span style={{color: "black", marginLeft: '2%'}}><i className="fa fa-shopping-cart"></i></span></h2>
@@ -38,7 +36,7 @@ const orderSummary = (props) => {
             <p>Total <span className="price"  style={{color: "black"}}><b>{price.toFixed(2)}$</b></span></p>            
             <div style={divStyles}>
                 <Button btnType='Danger' clicked={props.cancelOrder}>CANCEL</Button>
-                <Button btnType='Success' clicked={props.checkout}>{orderButtonContent}</Button>
+                <Button btnType='Success' clicked={props.continue}>{orderButtonContent}</Button>
             </div>
         </Fragment>
     );
