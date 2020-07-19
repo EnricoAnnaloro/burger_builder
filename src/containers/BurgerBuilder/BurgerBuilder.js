@@ -114,6 +114,8 @@ class BurgerBuilder extends Component {
             console.log(queryParams);
         }
 
+        queryParams.push("price=" + this.state.totalPrice);
+
         // merging all the combination in a string 'ingredient=quantity&ingredient=quantity&...'
         const queryString = queryParams.join('&');
 
@@ -122,34 +124,6 @@ class BurgerBuilder extends Component {
             search: "?" + queryString
         });
     };
-
-    // checkoutHandler = () => {
-    //     this.setState({isOrderLoading: true});
-
-    //     const order = {
-    //         ingredients: this.state.ingredients,
-    //         price: this.state.price,
-    //         customer: {
-    //             name: 'Renke Wang',
-    //             address: {
-    //                 Country: "Italy",
-    //                 city: "Turin",
-    //                 street: "streettest, 34",
-    //                 zipCode: "203040"
-    //             },
-    //             email: "email@gmail.com"
-    //         },
-    //         deliveryMethod: "Fastest"
-    //     }
-
-    //     Axios.post("orders.json", order)
-    //         .then( response => {
-    //             this.setState({isOrderLoading: false, isModalOn: false})
-    //         })
-    //         .catch( error => {
-    //             this.setState({isOrderLoading: false, isModalOn: false})
-    //         });
-    // }
 
     render(){
 
