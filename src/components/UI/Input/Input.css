@@ -20,8 +20,12 @@
     padding: 6px 6px;
 }
 
-
 .Input .InputElement:focus{
     outline: none;
-    background-color: #ccc;
+    background-color: rgba(204, 204, 204, 0.514);
+}
+
+.Input .Invalid{
+    border: 1px solid red;
+    background-color: rgba(255, 213, 209, 0.555);
 }
