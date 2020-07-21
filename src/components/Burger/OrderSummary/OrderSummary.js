@@ -5,8 +5,8 @@ import './OrderSummary.css'
 
 const orderSummary = (props) => {
 
-    const price = props.order.totalPrice;
-    const ingredients = props.order.ingredients;
+    const price = props.price;
+    const ingredients = props.ingredients;
 
     const ingredientsList = Object.keys(ingredients).map(igKey => {
         return(
