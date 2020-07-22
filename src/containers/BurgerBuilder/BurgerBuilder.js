@@ -8,7 +8,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Axios from '../../axiosInstances/axios-orders';
 import withErrorHandler from '../withErrorHandler/withErrorHandler';
 import Loader from '../../components/UI/Loader/Loader';
-import * as actionTypes from '../../store/actions';
+import * as burgerBuilderActions from '../../store/actions/index';
 
 class BurgerBuilder extends Component {
 
@@ -16,29 +16,10 @@ class BurgerBuilder extends Component {
         purchesable: true,
         isModalOn: false,
         isOrderLoading: false,
-        error: false
     };
 
     componentDidMount() {
-        // Axios.get("/ingredients.json")
-        //     .then( response => {
-        //         let price = 0;
-        //         let ingredients = {
-        //             salad: 0,         
-        //             bacon: 0,        
-        //             cheese: 0,    
-        //             meat: 1 
-        //         };
-
-        //         for (let ingredient in response.data){
-        //             ingredients[ingredient] = response.data[ingredient]
-        //             price = price + (INGREDIENTS_PRICES[ingredient] * response.data[ingredient]);
-        //         }
-        //         this.setState({ingredients: ingredients, totalPrice: price});                    
-        //     })
-        //     .catch( error => {
-        //         this.setState({error: error});
-        //     } );
+        this.props.onInitIngredients()
     };
 
     updatePurchaseState = () => {
@@ -71,9 +52,9 @@ class BurgerBuilder extends Component {
         const disableInfo = { ...this.props.ingredients };
         for (let key in disableInfo) { disableInfo[key] = disableInfo[key] <= 0 }
 
-        let burger = this.state.error ? <p style={{ textAlign: "center" }}>Ingredients can't be loaded</p> : <Loader />;
+        let burger = this.props.error ? <p style={{ textAlign: "center" }}>Ingredients can't be loaded</p> : <Loader />;
         let orderSummary = null;
-
+        
         if (this.props.ingredients) {
             burger = (
                 <Fragment>
@@ -117,14 +98,16 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
     return {
         ingredients: state.ingredients,
-        price: state.totalPrice
+        price: state.totalPrice,
+        errror: state.error
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIngredientAdded: (ingName) => dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingName }),
-        onIngredientRemoved: (ingName) => dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName: ingName })
+        onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
+        onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
     };
 }
 
