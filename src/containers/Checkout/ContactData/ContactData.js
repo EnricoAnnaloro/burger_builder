@@ -5,6 +5,8 @@ import Button from '../../../components/UI/Button/Button';
 import Axios from '../../../axiosInstances/axios-orders';
 import Loader from '../../../components/UI/Loader/Loader';
 import Input from '../../../components/UI/Input/Input';
+import withErrorHandler from  '../../withErrorHandler/withErrorHandler'
+import * as Actions from '../../../store/actions/index'
 import './ContactData.css';
 
 class ContactData extends Component {
@@ -102,14 +104,11 @@ class ContactData extends Component {
                 value: ''
             }
         },
-        isOrderLoading: false,
         isFormValid: false
     }
 
     onOrderHandler = (event) => {
         event.preventDefault();
-        this.setState({ isOrderLoading: true });
-
         const formData = {};
         for (let formDataIdentifier in this.state.orderForm) {
             formData[formDataIdentifier] = this.state.orderForm[formDataIdentifier].value;
@@ -121,14 +120,7 @@ class ContactData extends Component {
             order: formData
         }
 
-        Axios.post("orders.json", order)
-            .then(response => {
-                this.setState({ isOrderLoading: false });
-                this.props.history.push('/');
-            })
-            .catch(error => {
-                this.setState({ isOrderLoading: false })
-            });
+        this.props.onPurchaseBurger(order);
     }
 
     checkValidity = (value, rules) => {
@@ -188,8 +180,7 @@ class ContactData extends Component {
 
         let form = (<form onSubmit={this.onOrderHandler}>
             {formElements.map(element => {
-                console.log(element.config.validity['isValid'])
-                return (
+                    return (
                     <Input
                         key={element.id}
                         elementType={element.config.elementType}
@@ -204,7 +195,7 @@ class ContactData extends Component {
             <Button btnType="Success" disabled={!this.state.isFormValid}>ORDER</Button>
         </form>);
 
-        if (this.state.isOrderLoading) {
+        if (this.props.isOrderLoading) {
             form = <Loader />
         }
 
@@ -220,9 +211,17 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
     return{
-        ingredients: state.ingredients,
-        price: state.totalPrice
+        ingredients: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        isOrderLoading: state.order.loading
+
     }
 }
 
-export default connect(mapStateToProps)(ContactData);
+const mapDispatchToProps = dispatch => {
+    return{
+        onPurchaseBurger: orderData => dispatch(Actions.purchaseBurger(orderData))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, Axios));

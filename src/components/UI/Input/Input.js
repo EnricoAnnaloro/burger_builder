@@ -10,9 +10,6 @@ const Input = (props) => {
         styleClasses = "InputElement Invalid"
     }
 
-    console.log(styleClasses)
-
-
     switch (props.elementType) {
         case "input":
             inputElement = <input className={styleClasses} {...props.elementConfig} value={props.value} onChange={props.changed}/>

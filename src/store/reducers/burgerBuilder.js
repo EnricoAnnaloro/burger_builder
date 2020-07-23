@@ -3,8 +3,8 @@ import * as actionTypes from '../actions/actionsTypes'
 // We record the prices for the ingredients as a global constant
 const INGREDIENTS_PRICES = {
     salad: 0.50,
-    bacon: 0.99,
-    cheese: 0.99,
+    bacon: 1,
+    cheese: 1,
     meat: 1.99
 };
 
