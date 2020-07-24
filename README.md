@@ -5,4 +5,4 @@ Coded by Annaloro Enrico
 
 Project of the Udemy course "React - The Complete Guide".
 
-Color Palette: f94144 - f3722c - f8961e - f9c74f - 90be6d - 43aa8b - 577590
+Framework Used: React, React Router, Redux, Axios

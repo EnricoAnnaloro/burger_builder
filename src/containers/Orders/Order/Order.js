@@ -3,8 +3,6 @@ import './Order.css'
 
 const Order = ( props ) => {
 
-    console.log(props);
-
     let ingredients = [];
     for (let ingredient in props.ingredients){
         ingredients.push(<span key={ingredient}>{ingredient}: {props.ingredients[ingredient]}</span>)
