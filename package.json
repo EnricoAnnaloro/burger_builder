@@ -1,23 +1,34 @@
 {
   "name": "burger_builder_app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.19.2",
-    "classnames": "^2.2.6",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "1.1.5",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
-  },
+  "version": "1.0.0",
+  "description": "Build-A-Burger APP",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnricoAnnaloro/burger_builder.git"
+  },
+  "author": "Enrico Annaloro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnricoAnnaloro/burger_builder/issues"
+  },
+  "homepage": "https://github.com/EnricoAnnaloro/burger_builder#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25"
+  },
+  "engines": {
+    "node": "12.16.3"
   }
 }
