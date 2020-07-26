@@ -3,7 +3,6 @@ import React, { Component, Fragment } from 'react';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 import Footer from '../Footer/Footer'
-import BackgroundImage from '../../assets/images/background.jpg';
 
 import './Layout.css'
 
@@ -28,10 +27,7 @@ class Layout extends Component {
             <Fragment>
                 <Toolbar openSideDrawer={this.openSideDrawerHandler} sideDrawerState={this.state.isSideDrawerOpen}/>
                 <SideDrawer isOpen={this.state.isSideDrawerOpen} toClose={this.closeSideDrawerHandler}/>                
-                <main className="MainContent">
-                    <div className="BackgroundImage">
-                        <img src={BackgroundImage}></img>
-                    </div>
+                <main className="MainContent">                
                     {this.props.children}
                 </main>
                 <Footer />

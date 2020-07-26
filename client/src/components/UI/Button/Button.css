@@ -1,29 +1,29 @@
 .Button {
     background-color: transparent;
     border: 1px solid black;
-    width: 120px;
+    width: 80px;
     height: 50px;
     color: white;
     outline: none;
     cursor: pointer;
-    font: inherit;
     padding: 10px;
     margin: 10px;
     font-weight: bold;
     border-radius: 10%;
+    font-size: 11px;
 }
 
-.Button:hover{
+.Button:hover {
     color: white;
     animation: popup 0.2s ease-in;
     transform: scale(1.2);
 }
 
-.Button:hover .Loader{
-    color:white;
+.Button:hover .Loader {
+    color: white;
 }
 
-.Button:disabled{
+.Button:disabled {
     color: #ccc;
     background-color: #eee;
     cursor: not-allowed;
@@ -38,11 +38,18 @@
     background-color: #944317;
 }
 
+@media(min-width: 768px) {
+    .Button {
+        width: 120px;
+        font-size: 13px;
+    }
+}
+
 @keyframes popup {
     0% {
         transform: scale(1);
     }
-    100%{
+    100% {
         transform: scale(1.2);
     }
 }

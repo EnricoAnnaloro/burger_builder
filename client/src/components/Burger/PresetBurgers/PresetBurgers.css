@@ -30,7 +30,7 @@
     }
     .PresetBurgers .BurgerPreset p {
         margin: auto auto;
-        font-size: 30px;
+        font-size: 20px;
     }
     .PresetBurgers .BurgerPreset:hover {
         background-color: white;
@@ -42,5 +42,12 @@
     .PresetBurgers .BurgerPreset:hover p {
         margin: 5px auto;
         font-size: 15px;
+    }
+}
+
+@media(min-width: 1400px) {
+    .PresetBurgers .BurgerPreset p {
+        margin: auto auto;
+        font-size: 30px;
     }
 }

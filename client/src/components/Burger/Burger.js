@@ -1,6 +1,8 @@
-import React from 'react'
-import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
-import './Burger.css'
+import React from 'react';
+
+import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
+
+import './Burger.css';
 
 const burger = (props) => {
 

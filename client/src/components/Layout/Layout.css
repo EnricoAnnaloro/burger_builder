@@ -1,6 +1,6 @@
 .MainContent {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 72px;
 }
 
 .MainContent .BackgroundImage {
@@ -25,6 +25,4 @@
     -webkit-filter: blur(5px);
 }
 
-@media(min-width: 1024px){
-
-}
+@media(min-width: 1024px) {}

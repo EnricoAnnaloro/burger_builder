@@ -1,5 +1,9 @@
-.CheckoutSummary{
+.CheckoutSummary {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 0;
+}
+
+.CheckoutSummary .burgerCheckoutSummary {
+    margin-bottom: 20px;
 }

@@ -1,27 +1,27 @@
-import { AUTH_START, AUTH_SUCCESS, AUTH_FAIL } from './actionsTypes'
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL } from './actionsTypes'
 
-export const authStart = () => {
+export const loginStart = () => {
     return {
-        type: AUTH_START
+        type: LOGIN_START
     };
 };
 
-export const authSuccess = authData => {
+export const loginSuccess = loginData => {
     return {
-        type: AUTH_SUCCESS,
-        authData: authData
+        type: LOGIN_SUCCESS,
+        loginData: loginData
     };
 };
 
-export const authFail = error => {
+export const loginFail = error => {
     return {
-        type: AUTH_FAIL,
+        type: LOGIN_FAIL,
         error: error
     };
 };
 
-export const auth = (username, password) => {
+export const login = (username, password) => {
     return dispatch => {
-        dispatch(authStart());
+        dispatch(loginStart());
     };
 };

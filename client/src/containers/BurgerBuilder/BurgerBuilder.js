@@ -10,6 +10,7 @@ import Axios from '../../axiosInstances/axios-orders';
 import withErrorHandler from '../withErrorHandler/withErrorHandler';
 import Loader from '../../components/UI/Loader/Loader';
 import * as Actions from '../../store/actions/index';
+import BackgroundImage from '../../assets/images/background.jpg';
 
 import './BurgerBuilder.css';
 
@@ -62,7 +63,7 @@ class BurgerBuilder extends Component {
         if (this.props.ingredients) {
             burger = (
                 <div className="BurgerBuilderPage">
-                    <div>
+                    <div className="BurgerSide">
                         <Burger ingredients={this.props.ingredients} />
                     </div>
                     <div>
@@ -95,6 +96,9 @@ class BurgerBuilder extends Component {
                 </Modal>
                 <PresetBurgers />
                 {burger}
+                <div className="BackgroundImage">
+                    <img src={BackgroundImage} alt=""></img>
+                </div>
             </Fragment>
         );
     }

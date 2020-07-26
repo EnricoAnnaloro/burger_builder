@@ -52,7 +52,7 @@ class PresetBurgers extends Component {
                 return (
                     <div className="BurgerPreset" key={presetBurger.name}>
                         <p>{presetBurger.name}</p>
-                        <img src={imageSet[presetBurger.img]}></img>
+                        <img src={imageSet[presetBurger.img]} alt="Not found"></img>
                     </div>
                 )
             }))

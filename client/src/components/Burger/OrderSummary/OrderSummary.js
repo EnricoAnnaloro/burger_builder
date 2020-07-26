@@ -16,7 +16,7 @@ const orderSummary = (props) => {
         )
     });
 
-    let orderButtonContent = "Checkout";
+    let orderButtonContent = "CHECKOUT";
     if (props.isLoading){
         orderButtonContent = <Loader />;
     }

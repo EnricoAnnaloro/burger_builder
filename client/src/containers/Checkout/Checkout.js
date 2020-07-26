@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import ContactData from './ContactData/ContactData';
 import CheckoutSummary from '../../components/CheckoutSummary/CheckoutSummary';
+import Burger from '../../components/Burger/Burger';
+import Button from '../../components/UI/Button/Button'
+
+import  './Checkout.css'
 
 class Checkout extends Component {
 
@@ -25,11 +29,22 @@ class Checkout extends Component {
                     cancel={this.checkoutCancelledHandler}
                     continue={this.checkoutContinuedHandler} />
             );
-            
         }
 
+        if (this.props.ingredients && this.props.location.pathname === "/checkout/contact-data") {
+            console.log("here")
+            summary = (
+                <div style={{textAlign: "center"}}>
+                    <Burger ingredients={this.props.ingredients} />
+                    <Button btnType="Danger" clicked={this.checkoutCancelledHandler}>CANCEL</Button>
+                </div>                
+            )
+        }
+        
+        console.log(this.props);
+
         return (
-            <div>
+            <div className="CheckoutPage">
                 {summary}
                 <Route path="/checkout/contact-data" component={ContactData} />
             </div>
