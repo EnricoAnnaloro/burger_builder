@@ -1,0 +1,46 @@
+.PresetBurgers {
+    display: none;
+}
+
+@media(min-width: 1024px) {
+    .PresetBurgers {
+        width: 100%;
+        height: 150px;
+        margin-top: 120px;
+        padding: 0 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .PresetBurgers .BurgerPreset {
+        width: 20%;
+        height: 150px;
+        border: 1px solid #ccc;
+        border-radius: 10%;
+        box-shadow: 0 4px 8px #CCC;
+        background-color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        transition: transform 1s;
+    }
+    .PresetBurgers .BurgerPreset img {
+        height: 0%;
+        object-fit: contain;
+    }
+    .PresetBurgers .BurgerPreset p {
+        margin: auto auto;
+        font-size: 30px;
+    }
+    .PresetBurgers .BurgerPreset:hover {
+        background-color: white;
+        transform: scale(1.2);
+    }
+    .PresetBurgers .BurgerPreset:hover img {
+        height: 70%;
+    }
+    .PresetBurgers .BurgerPreset:hover p {
+        margin: 5px auto;
+        font-size: 15px;
+    }
+}

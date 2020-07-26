@@ -1,4 +1,4 @@
-.Toolbar{
+.Toolbar {
     height: 72px;
     width: 100%;
     background-color: #f3722c;
@@ -14,8 +14,12 @@
     font-weight: bold;
 }
 
-@media(max-width: 499px){
-    .DesktopOnly{
+@media(max-width: 499px) {
+    .DesktopOnly {
         display: none;
     }
+}
+
+@media(min-width: 1024px) {
+
 }

@@ -1,19 +1,22 @@
 .Burger {
     width: 250px;
-    height: 400px;
+    height: 300px;
     margin: 10px auto;
     padding-bottom: 20px;
     text-align: center;
     font-weight: bold;
     overflow: auto;
     font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .Burger::-webkit-scrollbar {
     display: none;
-  }
+}
 
-@media (min-width: 576px) { 
+@media (min-width: 576px) {
     .Burger {
         width: 350px;
         height: 400px;
@@ -21,11 +24,24 @@
     }
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
     .Burger {
         width: 450px;
-        height: 490px;
+        height: 390px;
         margin-bottom: 0px;
         padding-bottom: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .Burger {
+        background-color: white;
+        border: 1px solid #eee;
+        box-shadow: 0 4px 8px #CCC;
+        border-radius: 10%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }

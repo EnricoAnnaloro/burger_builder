@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 
 import Burger from '../../components/Burger/Burger';
 import BurgerControls from '../../components/Burger/BurgerControls/BurgerControls';
+import PresetBurgers from '../../components/Burger/PresetBurgers/PresetBurgers'
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Axios from '../../axiosInstances/axios-orders';
 import withErrorHandler from '../withErrorHandler/withErrorHandler';
 import Loader from '../../components/UI/Loader/Loader';
 import * as Actions from '../../store/actions/index';
+
+import './BurgerBuilder.css';
 
 class BurgerBuilder extends Component {
 
@@ -58,7 +61,7 @@ class BurgerBuilder extends Component {
         
         if (this.props.ingredients) {
             burger = (
-                <Fragment>
+                <div className="BurgerBuilderPage">
                     <div>
                         <Burger ingredients={this.props.ingredients} />
                     </div>
@@ -72,7 +75,7 @@ class BurgerBuilder extends Component {
                             order={this.modalRenderHandler}
                         />
                     </div>
-                </Fragment>
+                </div>
             );
             orderSummary = (
                 <OrderSummary
@@ -90,6 +93,7 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.isModalOn} modalClosed={this.modalCancelHandler}>
                     {orderSummary}
                 </Modal>
+                <PresetBurgers />
                 {burger}
             </Fragment>
         );

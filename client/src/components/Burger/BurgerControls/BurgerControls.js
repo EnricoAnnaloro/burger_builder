@@ -16,6 +16,7 @@ const burgerControls = (props) => {
     return(
         <Fragment>
             <div className="BurgerControls">
+                <h3>Customize your burger!</h3>
                 <p id="price">Current Price: <strong>{props.price.toFixed(2)}$</strong></p>
                 {controls.map(ctrl => (
                     <BurgerControl 
