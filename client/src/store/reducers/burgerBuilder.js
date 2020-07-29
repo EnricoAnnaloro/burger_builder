@@ -62,6 +62,27 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: true
             }
+        
+        case actionTypes.SET_PRESET_BURGER:          
+            price = 1;
+            ingredients = {
+                salad: 0,
+                bacon: 0,
+                cheese: 0,
+                meat: 1
+            };
+
+            for (let ingredient in action.ingredients) {
+                ingredients[ingredient] = action.ingredients[ingredient]
+                price = price + (INGREDIENTS_PRICES[ingredient] * action.ingredients[ingredient]);
+            }
+
+            return {
+                ...state,
+                ingredients: ingredients,
+                totalPrice: price,
+                error: false
+            }
 
         default:
             return state;

@@ -6,10 +6,11 @@
 
 .AuthenticationPage .LoginForm {
     width: 80%;
+    background-color: white;
     margin: 10px auto;
     border: 2px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    border-radius: 2%;
+    box-shadow: 0 4px 8px #CCC;
+    border-radius: 10%;
     text-align: center;
 }
 
@@ -26,11 +27,12 @@
 
 .AuthenticationPage .RegisterForm {
     width: 80%;
+    background-color: white;
     margin: 0 auto;
     margin-top: 30px;
     border: 2px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    border-radius: 2%;
+    box-shadow: 0 4px 8px #CCC;
+    border-radius: 10%;
     text-align: center;
 }
 

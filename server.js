@@ -5,8 +5,6 @@ const path = require('path');
 
 
 const databaseInit = require('./utility/databeseInit');
-const startingIngredientsRoutes = require('./routes/api/startingIngredients');
-const ordersRoutes = require('./routes/api/orders');
 
 require('dotenv').config();
 
@@ -23,8 +21,9 @@ connection.once('open', () => { console.log("MongoDB connection succesful") });
 // Database Init
 // databaseInit();
 
-app.use('/api/startingIngredients', startingIngredientsRoutes);
-app.use('/api/orders', ordersRoutes);
+app.use('/api/startingIngredients', require('./routes/api/startingIngredients'));
+app.use('/api/orders', require('./routes/api/orders'));
+app.use('/api/user', require('./routes/api/user'));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

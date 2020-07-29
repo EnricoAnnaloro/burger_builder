@@ -1,10 +1,15 @@
-.BurgerLogo{
+.BurgerLogo {
     height: 100%;
     padding: 8px;
     background-color: white;
     border-radius: 10%;
+    transition: transform 1s;
 }
 
-.BurgerLogo img{
+.BurgerLogo img {
     height: 100%;
+}
+
+.BurgerLogo:hover {
+    transform: scale(1.1);
 }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import * as Actions from '../../store/actions/index';
+import BackgroundImage from '../../assets/images/backgroundAuth.jpg';
 
 import './Auth.css';
 
@@ -323,6 +324,9 @@ class Auth extends Component {
                 <div className="RegisterForm">
                     <h3>Sign Up</h3>
                     {registerForm}
+                </div>
+                <div className="BackgroundImage">
+                    <img src={BackgroundImage} alt=""></img>
                 </div>
             </div>
         );

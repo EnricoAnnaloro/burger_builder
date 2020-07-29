@@ -9,12 +9,32 @@ const userSchema = new Schema({
         trim: true,
         minlength: 3
     },
-    posts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Post"
-        }
-    ]
+    email: {
+        type: String,
+        required: true,
+        unique: true,        
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    last_name: {
+        type: String,
+        required: true
+    },
+    phone_number: {
+        type: String,
+        required: true
+    },
+    register_date: {
+        type: Date,
+        default: Date.now
+    }
+    
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

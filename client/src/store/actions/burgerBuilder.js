@@ -41,3 +41,10 @@ export const initIngredients = () => {
             } );
     }
 }
+
+export const setPresetBurger = ingredients => {
+    return {
+        type: actionTypes.SET_PRESET_BURGER,
+        ingredients: ingredients
+    }
+}
