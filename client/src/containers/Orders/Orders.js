@@ -40,8 +40,8 @@ class Orders extends Component {
 
 const mapStateToProps = state => {
     return {
-        orders: state.order.orders,
-        loading: state.order.loading
+        orders: state.orders.orders,
+        loading: state.orders.loading
     }
 }
 

@@ -1,14 +1,22 @@
-const router = require('express').Router();
-const Order = require('../../models/order.model.js');
+/*
+API ROUTE: /api/orders
+DESC: Orders Routes
+ACCESS: Private
+*/
 
-router.get('/', (req, res) => {
+const router = require('express').Router();
+
+const Order = require('../../models/order.model.js');
+const authMiddleware = require('../../middleware/auth');
+
+router.get('/', authMiddleware, (req, res) => {
     Order
         .find()
         .then(order => res.json(order))
         .catch(error => res.status(400).json(`Error: ${error}`));
 });
 
-router.post('/', (req, res) => {
+router.post('/', authMiddleware, (req, res) => {
     const orderData = req.body;
 
     const newOrderData = {
@@ -25,7 +33,7 @@ router.post('/', (req, res) => {
         .catch(error => res.status(400).json({ error: error }));
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authMiddleware, (req, res) => {
     Order
         .findById(req.params.id)
         .then(orderToDelete => orderToDelete.remove().then(() => res.json({ error: null })))

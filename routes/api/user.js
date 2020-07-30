@@ -1,3 +1,9 @@
+/*
+API ROUTE: /api/user
+DESC: User Related Routes (Registration)
+ACCESS: Public
+*/
+
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcrypt');

@@ -24,6 +24,7 @@ connection.once('open', () => { console.log("MongoDB connection succesful") });
 app.use('/api/startingIngredients', require('./routes/api/startingIngredients'));
 app.use('/api/orders', require('./routes/api/orders'));
 app.use('/api/user', require('./routes/api/user'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));

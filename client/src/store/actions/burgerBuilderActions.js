@@ -33,7 +33,6 @@ export const initIngredients = () => {
     return dispatch => {
         Axios.get("/api/startingIngredients")
             .then(response => {
-                console.log(response);
                 dispatch(setIngredients(response.data));      
             })
             .catch( error => {
