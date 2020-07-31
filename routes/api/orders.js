@@ -13,7 +13,7 @@ router.get('/', authMiddleware, (req, res) => {
     Order
         .find()
         .then(order => res.json(order))
-        .catch(error => res.status(400).json(`Error: ${error}`));
+        .catch(error => res.status(400).json({ msg: error }));
 });
 
 router.post('/', authMiddleware, (req, res) => {
@@ -29,15 +29,15 @@ router.post('/', authMiddleware, (req, res) => {
     console.log(newOrder)
 
     newOrder.save()
-        .then(() => res.json({ error: null }))
-        .catch(error => res.status(400).json({ error: error }));
+        .then(() => res.json({ msg: null }))
+        .catch(error => res.status(400).json({ msg: error }));
 });
 
 router.delete('/:id', authMiddleware, (req, res) => {
     Order
         .findById(req.params.id)
-        .then(orderToDelete => orderToDelete.remove().then(() => res.json({ error: null })))
-        .catch(error => res.status(404).json({ error: error }));
+        .then(orderToDelete => orderToDelete.remove().then(() => res.json({ msg: null })))
+        .catch(error => res.status(404).json({ msg: error }));
 });
 
 module.exports = router;

@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
-import * as Actions from '../../store/actions/index';
 import BackgroundImage from '../../assets/images/backgroundAuth.jpg';
+import { registerUser, login } from '../../store/actions/index';
 
 import './Auth.css';
 
@@ -177,7 +178,6 @@ class Auth extends Component {
 
         if (rules.requiresSpecialChar && isValid) {
             isValid = /[~`!#$%^&*+=\-[\]\\';,/{}|\\":<>?]/g.test(value);
-            console.log(isValid);
         }
 
         return isValid;
@@ -206,16 +206,15 @@ class Auth extends Component {
         updatedFormElement.validity = updatedFormElementValidity;
         updatedForm[formElementID] = updatedFormElement;
 
-        console.log(updatedForm)
-
         let isFormValid = true;
         for (let formIdentifier in updatedForm) {
-            console.log(formIdentifier + updatedForm[formIdentifier].validity.isValid)
             isFormValid = updatedForm[formIdentifier].validity.isValid && isFormValid;
         }
 
         updatedState.isFormValid = isFormValid;
         updatedState.form = updatedForm;
+
+        console.log(updatedForm)
 
         this.setState({ loginForm: updatedState });
     }
@@ -244,11 +243,9 @@ class Auth extends Component {
         updatedFormElement.validity = updatedFormElementValidity;
         updatedForm[formElementID] = updatedFormElement;
 
-        console.log(updatedForm)
 
         let isFormValid = true;
         for (let formIdentifier in updatedForm) {
-            console.log(formIdentifier + updatedForm[formIdentifier].validity.isValid)
             isFormValid = updatedForm[formIdentifier].validity.isValid && isFormValid;
         }
 
@@ -259,9 +256,26 @@ class Auth extends Component {
         this.setState({ registerForm: updatedState });
     }
 
-    onloginHandler = event => {
+    onRegisterHandler = (event) => {
         event.preventDefault();
-        this.props.onAuth(this.state.loginForm.username, this.state.loginForm.password);
+
+        const registrationInfo = {
+            username: this.state.registerForm.form.username.value,
+            password: this.state.registerForm.form.password.value,
+            name: this.state.registerForm.form.name.value,
+            last_name: this.state.registerForm.form.last_name.value,
+            email: this.state.registerForm.form.email.value,
+            phone_number: this.state.registerForm.form.phone_number.value
+        }
+
+
+        this.props.onUserRegistration(registrationInfo);
+    }
+
+    onLoginHandler = (event) => {
+        event.preventDefault();
+
+        this.props.onLoginHandler(this.state.loginForm.form.username.value, this.state.loginForm.form.password.value);
     }
 
     render() {
@@ -273,7 +287,7 @@ class Auth extends Component {
             })
         }
 
-        let loginForm = (<form onSubmit={this.onloginHandler}>
+        let loginForm = (<form onSubmit={this.onLoginHandler}>
             {loginFormElements.map(element => {
                 return (
                     <Input
@@ -298,7 +312,7 @@ class Auth extends Component {
             })
         }
 
-        let registerForm = (<form onSubmit={this.onloginHandler}>
+        let registerForm = (<form onSubmit={this.onRegisterHandler}>
             {registerFormElements.map(element => {
                 return (
                     <Input
@@ -312,31 +326,41 @@ class Auth extends Component {
                         changed={(event) => this.registerInputChangedHandler(event, element.id)} />
                 )
             })}
-            <Button btnType="Success" disabled={!this.state.registerForm.isFormValid}>Sign Up!</Button>
+            <Button btnType="Success" /*disabled={!this.state.registerForm.isFormValid}*/>Sign Up!</Button>
         </form>);
 
         return (
-            <div className="AuthenticationPage">
-                <div className="LoginForm">
-                    <h3>Login</h3>
-                    {loginForm}
+            <Fragment>
+                {this.props.isAuthenticated ? <Redirect to='/' /> : null }
+                <div className="AuthenticationPage">
+                    <div className="LoginForm">
+                        <h3>Login</h3>
+                        {loginForm}
+                    </div>
+                    <div className="RegisterForm">
+                        <h3>Sign Up</h3>
+                        {registerForm}
+                    </div>
+                    <div className="BackgroundImage">
+                        <img src={BackgroundImage} alt=""></img>
+                    </div>
                 </div>
-                <div className="RegisterForm">
-                    <h3>Sign Up</h3>
-                    {registerForm}
-                </div>
-                <div className="BackgroundImage">
-                    <img src={BackgroundImage} alt=""></img>
-                </div>
-            </div>
+            </Fragment>
         );
+    }
+}
+
+const mapStatetoProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onloginHandler: (username, password) => dispatch(Actions.login(username, password))
+        onLoginHandler: (username, password) => dispatch(login(username, password)),
+        onUserRegistration: userRegistrationForm => dispatch(registerUser(userRegistrationForm))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStatetoProps, mapDispatchToProps)(Auth);

@@ -1,5 +1,5 @@
 /*
-API ROUTE: /api/user
+API ROUTE: /api/users
 DESC: User Related Routes (Registration)
 ACCESS: Public
 */
@@ -14,18 +14,16 @@ const User = require('../../models/user.model');
 router.post('/', (req, res) => {
     const newUserData = req.body;
 
-    console.log(newUserData);
-    
     if (!newUserData.username || !newUserData.password || !newUserData.name || !newUserData.last_name || !newUserData.phone_number || !newUserData.email) {
         return res.status(400).json({ msg: "Please fill in all fileds" });
     }
-    
+
     User.findOne({ email: newUserData.email }).then(firstCheckUser => {
         if (firstCheckUser) return res.status(400).json({ msg: "User with same email registered" });
-        
+
         User.findOne({ username: newUserData.username }).then(secondCheckUser => {
             if (secondCheckUser) return res.status(400).json({ msg: "User with same username registered" });
-            
+
             const newUser = new User({
                 username: newUserData.username,
                 password: newUserData.password,
@@ -61,7 +59,7 @@ router.post('/', (req, res) => {
                                     }
                                 })
                             }
-                        )                        
+                        )
                     })
                 })
             })

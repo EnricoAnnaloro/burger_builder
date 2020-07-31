@@ -28,8 +28,8 @@ const orderSummary = (props) => {
 
     return(
         <Fragment>
-            <h2 style={{textAlign: "center"}}>Your order<span style={{color: "black", marginLeft: '2%'}}><i className="fa fa-shopping-cart"></i></span></h2>
-            <p><strong>Ingredient</strong> <span className="price">Quantity</span></p>
+            <h2 style={{ textAlign: "center" }}>Your order<span style={{ color: "black", marginLeft: '2%' }}><i className="fa fa-shopping-cart"></i></span></h2>
+            <p><strong>Ingredients</strong></p>
             <hr></hr>
                 {ingredientsList}                
             <hr></hr>

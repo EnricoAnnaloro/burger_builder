@@ -108,7 +108,7 @@ const mapStateToProps = state => {
     return {
         ingredients: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        errror: state.burgerBuilder.error
+        error: state.burgerBuilder.error
     };
 }
 
@@ -121,4 +121,4 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, Axios));
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);

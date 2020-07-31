@@ -12,7 +12,6 @@ class Modal extends Component {
         
     }
 
-
     render() {
         return (
             <Fragment>
@@ -23,8 +22,9 @@ class Modal extends Component {
                         transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
                         opacity: this.props.show ? '1' : '0'
                     }}
-                >
+                >                    
                     {this.props.children}
+                    {this.props.isError ? <i className="far fa-7x fa-frown"></i> : null}
             </div>
             </Fragment>
         );

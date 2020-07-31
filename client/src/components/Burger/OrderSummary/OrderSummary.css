@@ -1,8 +1,10 @@
-.Modal .hr{
+.Modal hr{
     border: 1px solid lightgrey;
+    height: 1px;
+    width: 80%;
 }
 
 .Modal .price{
-    float: right;
+    margin-left: 5px;
     color: grey;
 }

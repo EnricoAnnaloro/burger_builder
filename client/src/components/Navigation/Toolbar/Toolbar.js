@@ -6,7 +6,10 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import MenuIcon from '../SideDrawer/MenuIcon/MenuIcon';
 import './Toolbar.css';
 
-const toolbar = ( props ) => {
+const toolbar = (props) => {
+    
+    console.log('toolbar', props);
+
     return(
         <Fragment>
             <header className="Toolbar">

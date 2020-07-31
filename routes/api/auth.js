@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user.model');
 const authMiddleware = require('../../middleware/auth');
-const { route } = require("./user");
+const { route } = require("./users");
 
 /*
 API ROUTE: /api/auth
@@ -14,6 +14,7 @@ ACCESS: Public
 */
 router.post('/', (req, res) => {
     const userData = req.body;
+    console.log(userData);
 
     if (!userData.username || !userData.password ) {
         return res.status(400).json({ msg: "Please fill in all fileds" });
@@ -56,7 +57,7 @@ API ROUTE: /api/auth/user
 DESC: Get user data
 ACCESS: Private
 */
-router.get('/user', authMiddleware, (req, res) => {
+router.get('/users', authMiddleware, (req, res) => {
     User.findById(req.user.id)
         .select('-password')    // Get everything except password
         .then( user => res.json({user: user}))

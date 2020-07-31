@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Button from '../../../components/UI/Button/Button';
-import Axios from '../../../axiosInstances/axios-orders';
 import Loader from '../../../components/UI/Loader/Loader';
 import Input from '../../../components/UI/Input/Input';
-import withErrorHandler from  '../../withErrorHandler/withErrorHandler'
 import * as Actions from '../../../store/actions/index'
 import './ContactData.css';
 
@@ -20,9 +18,9 @@ class ContactData extends Component {
                     placeholder: 'Name',
                     userhelp: null
                 },
-                value: '',
+                value: this.props.isAuthenticated ? this.props.user.name + ' ' + this.props.user.last_name : '',
                 validity: {
-                    isValid: false,
+                    isValid: this.props.isAuthenticated ? true : false,
                     shouldValidate: true,
                     touched: false,
                     required: true
@@ -82,9 +80,9 @@ class ContactData extends Component {
                     placeholder: 'Email',
                     userhelp: null
                 },
-                value: '',
+                value: this.props.isAuthenticated ? this.props.user.email : '',
                 validity: {
-                    isValid: false,
+                    isValid: this.props.isAuthenticated ? true : false,
                     shouldValidate: true,
                     touched: false,
                     required: true
@@ -94,7 +92,7 @@ class ContactData extends Component {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        { value: null, displayValue: "Delivery... " },
+                        { value: '', displayValue: "Delivery... " },
                         { value: "Regular", displayValue: "Regular" },
                         { value: "Fast", displayValue: "Fast" },
                         { value: "Fastest", displayValue: "Fastest" }
@@ -148,10 +146,11 @@ class ContactData extends Component {
     }
 
     inputChangedHandler = (event, formElementID) => {
+        
         const updatedForm = {
             ...this.state.orderForm
         };
-
+        
         const updatedFormElement = {
             ...updatedForm[formElementID]
         };
@@ -186,28 +185,25 @@ class ContactData extends Component {
         let form = (<form onSubmit={this.onOrderHandler}>
             <h3>Enter your contact</h3>
             {formElements.map(element => {
-                    return (
+                return (
                     <Input
                         key={element.id}
                         elementType={element.config.elementType}
                         elementConfig={element.config.elementConfig}
-                        value={element.value}
+                        value={element.config.value}
                         valid={element.config.validity.isValid}
                         shouldValidate={element.config.validity.shouldValidate}
                         touched={element.config.validity.touched}
                         changed={(event) => this.inputChangedHandler(event, element.id)} />
                 )
             })}
-            <Button btnType="Success" disabled={!this.state.isFormValid}>ORDER</Button>
+            <Button btnType="Success" disabled={!this.state.isFormValid}>
+                {!this.props.isOrderLoading ? "ORDER" : <Loader />}
+            </Button>
         </form>);
 
-        if (this.props.isOrderLoading) {
-            form = <Loader />
-        }
-
-
         return (
-            <div className="ContactData">                
+            <div className="ContactData">
                 {form}
             </div>
         );
@@ -215,18 +211,19 @@ class ContactData extends Component {
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         ingredients: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        isOrderLoading: state.orders.loading
-
+        isOrderLoading: state.orders.loading,
+        isAuthenticated: state.auth.isAuthenticated,
+        user: state.auth.user
     }
 }
 
 const mapDispatchToProps = dispatch => {
-    return{
+    return {
         onPurchaseBurger: orderData => dispatch(Actions.purchaseBurger(orderData))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, Axios));
+export default connect(mapStateToProps, mapDispatchToProps)(ContactData);

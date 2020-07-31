@@ -21,14 +21,11 @@ function authMiddleware(req, res, next) {
     
         // Add user from payload
         req.user = decodedToken;
-
-        console.log(decodedToken);
     
         next();        
     } catch (e) {
         // Non valid token
         res.status(400).json({ msg: 'Token is not valid' });
-
     }    
 }
 

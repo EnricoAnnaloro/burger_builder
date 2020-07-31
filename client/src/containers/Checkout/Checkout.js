@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ContactData from './ContactData/ContactData';
 import CheckoutSummary from '../../components/CheckoutSummary/CheckoutSummary';
 import Burger from '../../components/Burger/Burger';
-import Button from '../../components/UI/Button/Button'
+import Button from '../../components/UI/Button/Button';
 
 import  './Checkout.css'
 
@@ -41,8 +41,6 @@ class Checkout extends Component {
             )
         }
         
-        console.log(this.props);
-
         return (
             <div className="CheckoutPage">
                 {summary}
