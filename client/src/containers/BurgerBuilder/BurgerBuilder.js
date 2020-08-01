@@ -6,8 +6,6 @@ import BurgerControls from '../../components/Burger/BurgerControls/BurgerControl
 import PresetBurgers from '../../components/Burger/PresetBurgers/PresetBurgers'
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
-import Axios from '../../axiosInstances/axios-orders';
-import withErrorHandler from '../withErrorHandler/withErrorHandler';
 import Loader from '../../components/UI/Loader/Loader';
 import * as Actions from '../../store/actions/index';
 import BackgroundImage from '../../assets/images/background.jpg';

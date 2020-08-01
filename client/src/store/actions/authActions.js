@@ -11,7 +11,7 @@ import {
     REGISTER_FAIL
 } from '../actions/actionsTypes'
 
-import { returnErrors, clearErrors } from './index'
+import { returnErrors } from './index'
 // Check token and load user
 // by making a request to /api/auth/user
 

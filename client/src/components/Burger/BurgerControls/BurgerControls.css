@@ -1,6 +1,6 @@
 .BurgerControls {
     width: 100%;
-    height: 470px;
+    height: 60vh;
     background-color: #F8961e;
     display: flex;
     flex-flow: column;
@@ -57,14 +57,14 @@
 
 @media (min-width: 768px) {
     .BurgerControls {
-        height: 470px;
+        height: 60vh;
         padding-top: 10px;
     }
 }
 
 @media (min-width: 1024px) {
     .BurgerControls {
-        height: 490px;
+        height: 50vh;
         background-color: white;
         border: 1px solid #eee;
         box-shadow: 0 4px 8px #CCC;

@@ -8,7 +8,6 @@ import Checkout from './containers/Checkout/Checkout';
 import Orders from './containers/Orders/Orders';
 import LoginPage from './containers/AuthPage/Auth';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
-import LogoutForm from './components/LogoutForm/LogoutForm'
 
 class App extends Component {
 

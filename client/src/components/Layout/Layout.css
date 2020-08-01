@@ -12,7 +12,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 90vh;
 }
 
 .MainContent .BackgroundImage img {
@@ -25,4 +25,14 @@
     -webkit-filter: blur(5px);
 }
 
-@media(min-width: 1024px) {}
+@media(min-width: 768px) {
+    .MainContent .BackgroundImage {
+        height: 76vh;
+    }
+}
+
+@media(min-width: 1024px) {
+    .MainContent .BackgroundImage {
+        height: 100vh;
+    }
+}

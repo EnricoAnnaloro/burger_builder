@@ -74,10 +74,6 @@ export const fetchOrders = ( username, token ) => {
             
         Axios.post('/api/orders', requestBody, tokenConfig(getState))
             .then(response => {
-                const fetchedOrders = [];
-
-                console.log(response.data.orders);
-
                 dispatch(fetchOrdersSuccess(response.data.orders));
             })
             .catch(error => {

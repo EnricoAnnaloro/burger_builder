@@ -1,18 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 
 import NavigationItem from './NavigationItem/NavigationItem';
 import LogoutButton from './LogoutButton/LogoutButton'
 import './NavigationItems.css';
 
 const navigationItems = (props) => {
-
-    const location = useLocation();
-    let destination = location.pathname + "/logout"
-    if (location.pathname === '/') {
-        destination = '/logout'
-    }
     
     console.log('Nav Items', props.authInfo);
     return (
