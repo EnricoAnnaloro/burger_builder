@@ -1,4 +1,4 @@
-.BurgerControl{
+.BurgerControl {
     width: 300px;
     display: flex;
     justify-content: space-around;
@@ -6,7 +6,7 @@
     margin: 5px 0;
 }
 
-.BurgerControl .buttons{
+.BurgerControl .buttons {
     display: flex;
 }
 
@@ -34,7 +34,7 @@
     width: 80px;
 }
 
-.BurgerControl .Less {  
+.BurgerControl .Less {
     background-color: #9e733e;
     color: white;
 }
@@ -44,7 +44,7 @@
     color: white;
 }
 
-.BurgerControl .Less:hover, .BurgerControl .Less:active {  
+.BurgerControl .Less:hover, .BurgerControl .Less:active {
     background-color: #DAA972;
     color: white;
 }
@@ -68,6 +68,12 @@
 
 @media (min-width: 1000px) and (min-height: 700px) {
     .BurgerControl {
-        width: 400px;        
+        width: 400px;
+    }
+}
+
+@media (min-width: 1680px) {
+    .BurgerControl {
+        width: 550px;
     }
 }

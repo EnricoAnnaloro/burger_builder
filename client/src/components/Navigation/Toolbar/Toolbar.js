@@ -8,8 +8,6 @@ import './Toolbar.css';
 
 const toolbar = (props) => {
     
-    console.log('toolbar', props);
-
     return(
         <Fragment>
             <header className="Toolbar">

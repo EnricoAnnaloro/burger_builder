@@ -24,7 +24,7 @@ class Modal extends Component {
                     }}
                 >                    
                     {this.props.children}
-                    {this.props.isError ? <i className="far fa-7x fa-frown"></i> : null}
+                    {this.props.isError ? <i className="far fa-5x fa-frown"></i> : null}
             </div>
             </Fragment>
         );

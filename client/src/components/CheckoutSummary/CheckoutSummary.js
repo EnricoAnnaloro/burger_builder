@@ -3,8 +3,8 @@ import Burger from '../Burger/Burger'
 import Button from '../UI/Button/Button'
 import './CheckoutSummary.css'
 
-const CheckoutSummary = ( props ) => {
-
+const CheckoutSummary = (props) => {
+    
     return (
         <div className="CheckoutSummary">
             <h1>Hope you find it tasty!</h1>
@@ -13,7 +13,6 @@ const CheckoutSummary = ( props ) => {
             </div>
             <Button btnType="Danger" clicked={props.cancel}>CANCEL</Button>
             <Button btnType="Success" clicked={props.continue}>CONTINUE</Button>
-
         </div>
     );
 }

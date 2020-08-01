@@ -1,10 +1,28 @@
-.SingleOrder{
+.SingleOrder {
     width: 90%;
     margin: 10px auto;
     border: 2px solid #eee;
     box-shadow: 0 2px 3px #ccc;
     box-sizing: border-box;
     padding: 5px 5px;
+    text-align: center;
+}
+
+/* .SingleOrder .BurgerDisplay {
+    display: none;
+} */
+
+.SingleOrder .Burger {
+    height: 80px;
+    width: 80px;
+    background-color: white;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 8px #CCC;
+    border-radius: 10%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .SingleOrder span {
@@ -15,6 +33,27 @@
     border: 1px solid #ccc;
 }
 
-.SingleOrder .Ingredients{
+.SingleOrder .Ingredients {
     width: 70%;
+}
+
+@media (min-width: 768px) {
+    .SingleOrder {
+        width: 60%;
+        padding: 0 2%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-align: left;
+    }
+    .SingleOrder .BurgerDisplay {
+        display: block;
+    }
+    .SingleOrder .OrderInfo {
+        padding: 0 10px;
+    }
+    .SingleOrder .Burger {
+        height: 200px;
+        width: 200px;
+    }
 }

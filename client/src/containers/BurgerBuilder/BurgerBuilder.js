@@ -9,8 +9,9 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Loader from '../../components/UI/Loader/Loader';
 import * as Actions from '../../store/actions/index';
 import BackgroundImage from '../../assets/images/background.jpg';
-
+import Button from '../../components/UI/Button/Button';
 import './BurgerBuilder.css';
+import { Redirect } from 'react-router-dom';
 
 class BurgerBuilder extends Component {
 
@@ -18,6 +19,7 @@ class BurgerBuilder extends Component {
         purchesable: true,
         isModalOn: false,
         isOrderLoading: false,
+        pageMustReload: false
     };
 
     componentDidMount() {
@@ -41,6 +43,10 @@ class BurgerBuilder extends Component {
         this.props.history.push('/checkout');
     };
 
+    pageRefreshHandler = () => {
+        window.location.reload(false);
+    }
+
     render() {
 
         // When a ingredient count goes to 0 we want to disable the 'remove ingredient' button
@@ -55,7 +61,15 @@ class BurgerBuilder extends Component {
         const disableInfo = { ...this.props.ingredients };
         for (let key in disableInfo) { disableInfo[key] = disableInfo[key] <= 0 }
 
-        let burger = this.props.error ? <p style={{ textAlign: "center" }}>Ingredients can't be loaded</p> : <Loader />;
+        let burger = this.props.error ?
+            <div className="BurgerBuilderPage">
+                <Modal show={true}>
+                    <p style={{ textAlign: "center" }}>An error occurred while fetching data</p>
+                    <p style={{ textAlign: "center" }}>Please check your connection and try refreshing the page</p>
+                    <i className="far fa-5x fa-frown"></i>
+                    <Button btnType="Success" clicked={this.pageRefreshHandler}>Refresh Page</Button>
+                </Modal>
+            </div> : <Loader />;
         let orderSummary = null;
         
         if (this.props.ingredients) {

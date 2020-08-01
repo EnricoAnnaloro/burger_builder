@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import Button from '../../UI/Button/Button'
 import Loader from '../../UI/Loader/Loader'
 import './OrderSummary.css'
@@ -9,15 +9,15 @@ const orderSummary = (props) => {
     const ingredients = props.ingredients;
 
     const ingredientsList = Object.keys(ingredients).map(igKey => {
-        return(
+        return (
             <p key={igKey}>
-                <strong style={{textTransform: 'capitalize'}}>{igKey}</strong> <span className="price">{ingredients[igKey]}</span>
+                <strong style={{ textTransform: 'capitalize' }}>{igKey}</strong> <span className="price">{ingredients[igKey]}</span>
             </p>
         )
     });
 
     let orderButtonContent = "CHECKOUT";
-    if (props.isLoading){
+    if (props.isLoading) {
         orderButtonContent = <Loader />;
     }
 
@@ -26,17 +26,20 @@ const orderSummary = (props) => {
         justifyContent: 'space-between'
     }
 
-    return(
+    return (
         <Fragment>
-            <h2 style={{ textAlign: "center" }}>Your order<span style={{ color: "black", marginLeft: '2%' }}><i className="fa fa-shopping-cart"></i></span></h2>
-            <p><strong>Ingredients</strong></p>
-            <hr></hr>
-                {ingredientsList}                
-            <hr></hr>
-            <p>Total <span className="price"  style={{color: "black"}}><b>{price.toFixed(2)}$</b></span></p>            
-            <div style={divStyles}>
-                <Button btnType='Danger' clicked={props.cancelOrder}>CANCEL</Button>
-                <Button btnType='Success' clicked={props.continue}>{orderButtonContent}</Button>
+            <div className="OrderSummaryModal">
+                <p>Your order<span style={{ color: "black", marginLeft: '2%' }}><i className="fa fa-shopping-cart"></i></span></p>
+                <p><strong>Ingredients</strong></p>
+                <hr></hr>
+                {ingredientsList}
+                <hr></hr>
+                <p>Total <span className="price" style={{ color: "black" }}><b>{price.toFixed(2)}$</b></span></p>
+                <div style={divStyles}>
+                    <Button btnType='Danger' clicked={props.cancelOrder}>CANCEL</Button>
+                    <Button btnType='Success' clicked={props.continue}>{orderButtonContent}</Button>
+                </div>
+
             </div>
         </Fragment>
     );

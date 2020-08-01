@@ -7,7 +7,6 @@ import Modal from '../../components/UI/Modal/Modal';
 const ErrorDisplay = ( props ) => {
 
     let errorModal = null;
-    console.log(props.error.id)
     const isError = props.error.id !== null;
     if (isError) {
         errorModal = (

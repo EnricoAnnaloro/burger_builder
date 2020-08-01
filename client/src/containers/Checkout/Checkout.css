@@ -1,10 +1,27 @@
 .CheckoutPage {
-    height: 135vh;
+    height: 1150px;
+}
+
+.CheckoutPage .Burger {
+    background-color: white;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 8px #CCC;
+    border-radius: 10%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .CheckoutPage {
+        height: 1200px;
+    }
 }
 
 @media(min-width: 1024px) {
     .CheckoutPage {
-        height: 100vh;
+        height: 900px;
         display: flex;
         justify-content: space-evenly;
         align-items: center;

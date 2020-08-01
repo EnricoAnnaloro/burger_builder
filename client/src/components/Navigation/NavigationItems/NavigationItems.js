@@ -7,7 +7,6 @@ import './NavigationItems.css';
 
 const navigationItems = (props) => {
     
-    console.log('Nav Items', props.authInfo);
     return (
         <ul className="NavigationItems">
             {props.authInfo.user ?

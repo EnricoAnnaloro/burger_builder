@@ -1,7 +1,12 @@
 .AuthenticationPage {
     width: 100%;
-    height: 107vh;
+    height: 920px;
     padding-top: 20px;
+    background-color: rgba(222, 184, 135, 0.267);
+}
+
+.AuthenticationPage .BackgroundImage {
+    display: none
 }
 
 .AuthenticationPage .LoginForm {
@@ -47,9 +52,11 @@
     margin: 2px auto;
 }
 
+@media (min-width: 768px) {}
+
 @media(min-width: 1024px) {
     .AuthenticationPage {
-        height: 90vh;
+        height: 700px;
         padding-top: 30px;
         display: flex;
         justify-content: center;
@@ -62,5 +69,12 @@
     .AuthenticationPage .RegisterForm {
         width: 50%;
         margin: 0 20px;
+    }
+    .AuthenticationPage {
+        background: none;
+    }
+    .AuthenticationPage .BackgroundImage {
+        display: block;
+        height: 100%;
     }
 }

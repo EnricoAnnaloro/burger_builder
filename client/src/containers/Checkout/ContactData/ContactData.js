@@ -94,9 +94,9 @@ class ContactData extends Component {
                 elementConfig: {
                     options: [
                         { value: '', displayValue: "Delivery... " },
-                        { value: "Regular", displayValue: "Regular" },
-                        { value: "Fast", displayValue: "Fast" },
-                        { value: "Fastest", displayValue: "Fastest" }
+                        { value: "Regular (Free)", displayValue: "Regular (Free)" },
+                        { value: "Fast (1.5$)", displayValue: "Fast (1.5$)" },
+                        { value: "Fastest (2.5$)", displayValue: "Fastest (2.5$)" }
                     ],
                     userhelp: null
                 },
@@ -189,8 +189,6 @@ class ContactData extends Component {
         if (this.props.isOrderPurchased) {
             redirect = <Redirect to='/' />
         }
-
-        console.log(redirect)
 
         let form = (<form onSubmit={this.onOrderHandler}>
             <h3>Enter your contact for delivery</h3>

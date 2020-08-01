@@ -28,6 +28,7 @@
 @media(min-width: 1024px) {
     .ContactData {
         width: 50%;
+        margin: 0 10px;
     }
     .ContactData p {
         color: rgba(255, 0, 0, 0.6);

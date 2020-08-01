@@ -1,10 +1,30 @@
-.Modal hr{
+.OrderSummaryModal {
+    height: 100%;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.OrderSummaryModal p {
+    margin: 0;
+}
+
+.OrderSummaryModal hr {
     border: 1px solid lightgrey;
     height: 1px;
     width: 80%;
 }
 
-.Modal .price{
+.OrderSummaryModal .price {
     margin-left: 5px;
     color: grey;
+}
+
+@media (min-width: 768px) {
+    .OrderSummaryModal p {
+        font-size: 18px;
+    }
 }

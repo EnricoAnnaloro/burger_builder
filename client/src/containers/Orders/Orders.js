@@ -19,7 +19,6 @@ class Orders extends Component {
     render() {
 
         let unauthorized = null;
-        console.log(!this.props.isUserAuthenticated)
         if (!this.props.isUserAuthenticated) {
             unauthorized = <Redirect to='/' />
         }
@@ -27,8 +26,7 @@ class Orders extends Component {
         let orders = <Loader />
         if (!this.props.loading) {
             orders = this.props.orders.length >= 1 ?
-                this.props.orders.map(order => {
-                    console.log("order", order)
+                this.props.orders.reverse().map(order => {
                     return (
                         <Order
                             key={order._id}
