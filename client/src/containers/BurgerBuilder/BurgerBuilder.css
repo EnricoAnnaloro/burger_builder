@@ -12,10 +12,16 @@
 
 @media(min-width: 1024px) {
     .BurgerBuilderPage {
-        height: 68vh;
+        height: 590px;
         background-color: rgba(255, 255, 255, 0);
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+    }
+}
+
+@media(min-width: 1024px) and (min-height: 1200px) {
+    .BurgerBuilderPage {
+        height: 900px;
     }
 }

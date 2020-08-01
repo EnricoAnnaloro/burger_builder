@@ -33,6 +33,12 @@
 
 @media(min-width: 1024px) {
     .MainContent .BackgroundImage {
-        height: 100vh;
+        height: 1000px;
+    }
+}
+
+@media(min-width: 1024px) and (min-height: 1200px) {
+    .MainContent .BackgroundImage {
+        height: 1200px;
     }
 }
