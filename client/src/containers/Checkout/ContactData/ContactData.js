@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Button from '../../../components/UI/Button/Button';
 import Loader from '../../../components/UI/Loader/Loader';
@@ -124,7 +125,9 @@ class ContactData extends Component {
             order: formData
         }
 
-        this.props.onPurchaseBurger(order);
+        const username = this.props.isAuthenticated ? this.props.user.username : null;
+
+        this.props.onPurchaseBurger(order, username);
     }
 
     checkValidity = (value, rules) => {
@@ -182,8 +185,16 @@ class ContactData extends Component {
             })
         }
 
+        let redirect = null;
+        if (this.props.isOrderPurchased) {
+            redirect = <Redirect to='/' />
+        }
+
+        console.log(redirect)
+
         let form = (<form onSubmit={this.onOrderHandler}>
-            <h3>Enter your contact</h3>
+            <h3>Enter your contact for delivery</h3>
+            {!this.props.isAuthenticated ? <p>You are not logged in, be sure to control your email address input, as it will be the only way to review your order</p> : null}
             {formElements.map(element => {
                 return (
                     <Input
@@ -204,6 +215,7 @@ class ContactData extends Component {
 
         return (
             <div className="ContactData">
+                {redirect}
                 {form}
             </div>
         );
@@ -215,6 +227,7 @@ const mapStateToProps = state => {
         ingredients: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
         isOrderLoading: state.orders.loading,
+        isOrderPurchased: state.orders.isPurchased,
         isAuthenticated: state.auth.isAuthenticated,
         user: state.auth.user
     }
@@ -222,7 +235,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onPurchaseBurger: orderData => dispatch(Actions.purchaseBurger(orderData))
+        onPurchaseBurger: (orderData, userID) => dispatch(Actions.purchaseBurger(orderData, userID))
     }
 }
 

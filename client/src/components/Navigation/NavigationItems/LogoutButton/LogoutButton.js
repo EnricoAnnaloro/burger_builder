@@ -42,14 +42,11 @@ class LogoutButton extends Component {
             redirect = <Redirect to='/' />
         }
 
-        console.log('LogoutButton', this.props.authInfo)
-
         return (
             <Fragment>
                 {redirect}  
                 {this.state.showModal ? <LogoutForm cancelLogout={this.cancelModal} confirmLogout={this.confirmLogout} /> : null}
                 <button className="LogoutButton" onClick={this.displayModal}>
-                    <p className="username">{this.props.authInfo.user.username}</p>
                     <p className="logout">Logout</p>
                 </button>
             </Fragment>

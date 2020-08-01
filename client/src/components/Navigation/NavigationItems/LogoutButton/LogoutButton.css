@@ -1,31 +1,48 @@
 .LogoutButton {
     height: 60px;
-    width: 90px;
+    width: 100%;
     margin: 0;
     box-sizing: border-box;
     color: black;
     text-decoration: none;
     padding: 1px 10px;
-    margin: 0 5px;
+    margin: 0 auto;
     display: block;
     border-radius: 10%;
     border: none;
     border-bottom: 4px solid transparent;
     background-color: #f9c74f;
     font: inherit;
-    font-weight: bold;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
-.LogoutButton .username{
-    margin: 1px auto;
-    padding: 0
+.LogoutButton .username {
+    display: none;
 }
-.LogoutButton .logout{
-    margin: 1px auto;
-    padding: 0
+
+.LogoutButton .logout {
+    justify-content: start;
+    align-self: center;
+    padding: 0;
+    margin: 9px;
 }
 
 .LogoutButton:hover {
     border-bottom: 4px solid black;
+}
+
+@media(min-width: 500px) {
+    .LogoutButton {
+        height: 60px;
+        width: 90px;
+        font-weight: bold;
+    }
+    .LogoutButton .username {
+        display: block;
+        font-size: 0.6vw;
+        margin: 1px auto;
+        padding: 0
+    }
 }

@@ -7,29 +7,49 @@ ACCESS: Private
 const router = require('express').Router();
 
 const Order = require('../../models/order.model.js');
+const User = require('../../models/user.model.js');
 const authMiddleware = require('../../middleware/auth');
-
-router.get('/', authMiddleware, (req, res) => {
-    Order
-        .find()
-        .then(order => res.json(order))
-        .catch(error => res.status(400).json({ msg: error }));
-});
+const { findOne, findOneAndUpdate } = require('../../models/order.model.js');
+const { response } = require('express');
 
 router.post('/', authMiddleware, (req, res) => {
-    const orderData = req.body;
+    User.findOne({ username: req.body.username }, (err, user) => {
+        if (err) return res.status(400).json({ msg: "Orders not found" });
 
+        res.json({ orders: user.orders });
+    })
+});
+
+router.post('/new', (req, res) => {
+    const orderData = req.body;
+    
     const newOrderData = {
         ingredients: orderData.ingredients,
         order: orderData.order,
         price: orderData.price
     }
-    console.log(newOrderData)
     const newOrder = new Order(newOrderData);
-    console.log(newOrder)
-
+    
     newOrder.save()
-        .then(() => res.json({ msg: null }))
+    .then(() => {
+        console.log(!orderData.username)
+        if (!orderData.username) {
+            return res.json({ msg: null });
+        }
+
+        User.findOneAndUpdate(
+            { username: orderData.username },
+            { $push: { orders: newOrder } },
+            (error, success) => {
+                if (error) console.log(error);
+                else {
+                    console.log(success)
+                    return res.json({ msg: null });
+                }
+            }
+        )
+
+        })
         .catch(error => res.status(400).json({ msg: error }));
 });
 

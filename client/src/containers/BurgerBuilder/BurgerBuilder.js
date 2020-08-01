@@ -94,6 +94,10 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.isModalOn} modalClosed={this.modalCancelHandler}>
                     {orderSummary}
                 </Modal>
+                <Modal show={this.props.hasBeenPurchased} modalClosed={this.props.onInitPurchase}>
+                    <p>Purchase Successfull</p>
+                    <i className="fas fa-4x fa-thumbs-up"></i>
+                </Modal>
                 <PresetBurgers />
                 {burger}
                 <div className="BackgroundImage">
@@ -108,7 +112,8 @@ const mapStateToProps = state => {
     return {
         ingredients: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        error: state.burgerBuilder.error
+        error: state.burgerBuilder.error,
+        hasBeenPurchased: state.orders.isPurchased
     };
 }
 

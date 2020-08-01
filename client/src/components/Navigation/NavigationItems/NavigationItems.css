@@ -1,4 +1,4 @@
-.NavigationItems{
+.NavigationItems {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -8,8 +8,27 @@
     list-style: none;
 }
 
-@media(min-width: 500px){
-    .NavigationItems{
+.NavigationItems .GreetingUser {
+    padding: 0 2px;
+    text-align: center;
+}
+
+.NavigationItems .GreetingUser p {
+    font-size: 4vw;
+    color: black;
+    margin: 2px auto;
+}
+
+@media(min-width: 500px) {
+    .NavigationItems {
         display: flex;
+    }
+    .NavigationItems .GreetingUser {
+        padding: 0 2px;
+        text-align: center;
+        margin: 0 8px;
+    }
+    .NavigationItems .GreetingUser p {
+        font-size: 1.2vw;
     }
 }

@@ -12,7 +12,7 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true,        
+        unique: true,
     },
     password: {
         type: String,
@@ -33,8 +33,8 @@ const userSchema = new Schema({
     register_date: {
         type: Date,
         default: Date.now
-    }
-    
+    },
+    orders: [Object]    
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

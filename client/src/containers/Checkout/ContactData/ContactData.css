@@ -5,6 +5,12 @@
     text-align: center;
 }
 
+.ContactData p {
+    color: rgba(255, 0, 0, 0.6);
+    padding: 0 10px;
+    font-size: 10px;
+}
+
 .ContactData form {
     margin: 20px auto;
     text-align: center;
@@ -21,6 +27,11 @@
 
 @media(min-width: 1024px) {
     .ContactData {
-        width: 60%;
+        width: 50%;
+    }
+    .ContactData p {
+        color: rgba(255, 0, 0, 0.6);
+        padding: 0 10px;
+        font-size: 10px;
     }
 }

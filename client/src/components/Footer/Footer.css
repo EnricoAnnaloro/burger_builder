@@ -1,7 +1,92 @@
 .Footer {
     width: 100%;
-    height: 20vh;
+    height: 30vh;
     padding: 20px;
     text-align: center;
-    background-color: #f3722c;    
+    background-color: #f3722c;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Footer .BurgerInfo {
+    width: 90%;
+}
+
+.Footer .BurgerInfo ul {
+    padding: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.Footer .DevInfo {
+    width: 90%;
+}
+
+.Footer ul {
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+}
+
+.Footer ul a {
+    color: orange;
+    cursor: pointer;
+    font-size: 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.Footer ul a:hover {
+    /* animation: shake 0.5s ease; */
+    color: white;
+    transform: scale(1.2, 1.5);
+}
+
+.Footer ul li i {
+    font-size: 25px;
+}
+
+@media(min-width: 500px) {
+    .Footer ul a {
+        font-size: 20px;
+    }
+    .Footer ul li i {
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+    .Footer ul a {
+        font-size: 30px;
+    }
+    .Footer ul li i {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .NavBar .Title {
+        font-size: 50px;
+    }
+    .Footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .Footer .DevInfo {
+        width: 70%;
+    }
+    .Footer .BurgerInfo {
+        width: 30%;
+    }
 }

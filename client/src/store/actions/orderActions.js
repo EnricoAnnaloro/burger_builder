@@ -1,5 +1,6 @@
 import * as actionTypes from './actionsTypes'
 import Axios from '../../axiosInstances/axios-orders'
+import {tokenConfig} from './authActions'
 
 export const purchaseBurgerSuccess = (orderID, orderData) => {
     return {
@@ -22,11 +23,11 @@ export const purchaseBurgerStart = () => {
     }
 }
 
-export const purchaseBurger = orderData => {
+export const purchaseBurger = (orderData, username) => {
     return dispatch => {
+        orderData.username = username;
         dispatch(purchaseBurgerStart());
-        console.log(orderData);
-        Axios.post("/api/orders", orderData)
+        Axios.post("/api/orders/new", orderData)
             .then(response => {
                 dispatch(purchaseBurgerSuccess(response.data.name, orderData));
             })
@@ -43,6 +44,7 @@ export const purchaseInit = () => {
 }
 
 export const fetchOrdersSuccess = orders => {
+    console.log("fetchedOrders", orders)
     return {
         type: actionTypes.FETCH_ORDERS_SUCCESS,
         orders: orders
@@ -50,7 +52,7 @@ export const fetchOrdersSuccess = orders => {
 }
 
 export const fetchOrdersFail = error => {
-    return { 
+    return {
         type: actionTypes.FETCH_ORDERS_FAIL,
         error: error
     }
@@ -62,21 +64,21 @@ export const fetchOrdersStart = () => {
     }
 }
 
-export const fetchOrders = () => {
-    return dispatch => {
+export const fetchOrders = ( username, token ) => {
+    return (dispatch, getState) => {
         dispatch(fetchOrdersStart());
-        Axios.get('/api/orders')
+        
+        const requestBody = JSON.stringify({
+            username: username
+        })
+            
+        Axios.post('/api/orders', requestBody, tokenConfig(getState))
             .then(response => {
                 const fetchedOrders = [];
 
-                for (let key in response.data) {
-                    fetchedOrders.push({
-                        ...response.data[key],
-                        id: key
-                    });
-                }
+                console.log(response.data.orders);
 
-                dispatch(fetchOrdersSuccess(fetchedOrders));
+                dispatch(fetchOrdersSuccess(response.data.orders));
             })
             .catch(error => {
                 dispatch(fetchOrdersFail(error));

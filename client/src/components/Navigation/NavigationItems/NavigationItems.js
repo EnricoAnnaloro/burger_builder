@@ -9,16 +9,23 @@ import './NavigationItems.css';
 const navigationItems = (props) => {
 
     const location = useLocation();
-    console.log('Nav Items', location.pathname + "/logout");
     let destination = location.pathname + "/logout"
     if (location.pathname === '/') {
         destination = '/logout'
     }
-
+    
+    console.log('Nav Items', props.authInfo);
     return (
         <ul className="NavigationItems">
+            {props.authInfo.user ?
+                <div className="GreetingUser">
+                    <p>Welcome back</p>
+                    <p>{props.authInfo.user.username}</p>  
+                </div> :
+                null
+            }
             <NavigationItem link="/" exact >Home</NavigationItem>
-            <NavigationItem link="/orders">Orders</NavigationItem>
+            {props.isAuthenticated ? <NavigationItem link="/orders">Orders</NavigationItem> : null}
             {!props.isAuthenticated ? <NavigationItem link="/login">Login</NavigationItem> : <LogoutButton />}
         </ul>
     );
@@ -26,7 +33,8 @@ const navigationItems = (props) => {
 
 const mapStatetoProps = state => {
     return {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        authInfo: state.auth
     }
 }
 
