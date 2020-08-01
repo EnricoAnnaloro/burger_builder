@@ -10,9 +10,6 @@ const nodemailer = require('nodemailer');
 const Order = require('../../models/order.model.js');
 const User = require('../../models/user.model.js');
 const authMiddleware = require('../../middleware/auth');
-const { findOne, findOneAndUpdate } = require('../../models/order.model.js');
-const { response } = require('express');
-const { SchemaType } = require('mongoose');
 
 router.post('/', authMiddleware, (req, res) => {
     User.findOne({ username: req.body.username }, (err, user) => {
@@ -79,18 +76,12 @@ router.post('/new', (req, res) => {
                 </div>`
             )
 
-            console.log('mailbody', mailBody);
-
-
             let mailOptions = {
                 from: "build_a_burger@aol.com",
                 to: newOrderData.order.email,
                 subject: "Build-a-Burger - Your Order Confirmation",
                 html: mailBody
             }
-
-            console.log("mailOptions");
-            console.log(mailOptions);
 
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) console.log("error sendMail", error);
